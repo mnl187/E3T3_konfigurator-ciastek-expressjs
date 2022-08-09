@@ -1,10 +1,13 @@
 const express = require('express');
 const {COOKIE_BASES, COOKIE_ADDONS} = require("../data/cookies-data");
+const {handlebarsHelpers} = require("../views/handlebars-helpers");
 
 const homeRouter = express.Router();
 
 homeRouter
     .get('/', (req, res) => {
+        const sum = handlebarsHelpers['find-price'](Object.entries(COOKIE_BASES), 'light');
+
         res.render('home/index', {
             cookie: {
                 base: 'dark',
@@ -12,7 +15,7 @@ homeRouter
             },
             bases: Object.entries(COOKIE_BASES),
             addons: Object.entries(COOKIE_ADDONS),
-            // @TODO: Need smth to know what are the prices of bases and addons
+            sum,
         })
     })
 module.exports = {

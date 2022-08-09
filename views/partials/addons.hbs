@@ -2,4 +2,10 @@
 
 <ul>
     <li>Base: {{cookie.base}} - {{find-price bases cookie.base}} PLN.</li>
+    {{#each cookie.addons}}
+        <li>Addon: {{this}} - {{find-price @root.aadons this}}</li>
+    {{/each}}
 </ul>
+<p>
+    <strong>Total od {{sum}} PLN</strong>
+</p>

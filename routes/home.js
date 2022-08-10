@@ -6,7 +6,9 @@ const homeRouter = express.Router();
 
 homeRouter
     .get('/', (req, res) => {
-        const sum = handlebarsHelpers.findPrice(Object.entries(COOKIE_BASES), 'light');
+        const sum = handlebarsHelpers.findPrice(Object.entries(COOKIE_BASES), 'light') + ['coconut', 'honey'].reduce((prev, curr) => (
+            prev + handlebarsHelpers.findPrice(Object.entries(COOKIE_ADDONS), curr)
+    ), 0);
 
         res.render('home/index', {
             cookie: {

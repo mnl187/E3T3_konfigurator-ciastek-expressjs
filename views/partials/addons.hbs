@@ -3,9 +3,9 @@
 <ul>
     <li>Base: {{cookie.base}} - {{pricify (findPrice bases cookie.base)}} PLN.</li>
     {{#each cookie.addons}}
-        <li>Addon: {{this}} - {{pricify (findPrice @root.aadons this)}}</li>
+        <li>Addon: {{this}} - {{pricify (findPrice  @root.aadons this)}} PLN.</li>
     {{/each}}
 </ul>
 <p>
-    <strong>Total od {{pricify sum}} PLN</strong>
+    <strong>Total of {{pricify sum}} PLN</strong>
 </p>

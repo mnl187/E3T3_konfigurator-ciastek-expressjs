@@ -13,16 +13,28 @@ configuratorRouter
             });
     })
 
-   .get('/add-addon/:addonName', (req, res) => {
-       const {addonName} = req.params;
-       const {cookieAddons} = req.cookies;
+    .get('/add-addon/:addonName', (req, res) => {
+        const {addonName} = req.params;
+        const {cookieAddons} = req.cookies;
 
-       const addons = getAddonsFromReq(req);
-       addons.push(addonName);
+        const addons = getAddonsFromReq(req);
+        addons.push(addonName);
 
         res
             .cookie('cookieAddons', JSON.stringify(addons))
             .render('configurator/added', {
+                addonName,
+            });
+    })
+    .get('/delete-addon/:addonName', (req, res) => {
+        const {addonName} = req.params;
+        const {cookieAddons} = req.cookies;
+
+        const addons = getAddonsFromReq(req).filter(addon => addon !== addonName)
+
+        res
+            .cookie('cookieAddons', JSON.stringify(addons))
+            .render('configurator/deleted', {
                 addonName,
             });
     });

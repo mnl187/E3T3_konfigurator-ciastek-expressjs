@@ -8,6 +8,12 @@ const configuratorRouter = express.Router();
 configuratorRouter
     .get('/select-base/:baseName', (req, res) => {
         const {baseName} = req.params;
+
+        if (!COOKIE_BASES[baseName])
+            return res.render('error', {
+                description: `There is no such addon as ${baseName}.`,
+            });
+
         res
             .cookie('cookieBase', baseName)
             .render('configurator/base-selected', {
@@ -20,6 +26,12 @@ configuratorRouter
         const {cookieAddons} = req.cookies;
 
         const addons = getAddonsFromReq(req);
+
+        if (!COOKIE_ADDONS[addonName])
+            return res.render('error', {
+                description: `There is no such addon as ${addonName}.`,
+            });
+
         addons.push(addonName);
 
         res
@@ -32,10 +44,6 @@ configuratorRouter
         const {addonName} = req.params;
         const {cookieAddons} = req.cookies;
 
-        if (!COOKIE_ADDONS[addonName])
-            return res.render('error', {
-                description: `There is no such addon as ${addonName}.`,
-            });
 
 
 

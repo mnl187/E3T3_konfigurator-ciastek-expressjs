@@ -28,9 +28,11 @@ configuratorRouter
         const addons = getAddonsFromReq(req);
 
         if (!COOKIE_ADDONS[addonName])
-            return res.render('error', {
-                description: `There is no such addon as ${addonName}.`,
-            });
+            return showErrorPage(`There is no such addon as ${addonName}.`);
+
+        if (addons.includes(addonName)) {
+            return showErrorPage(res, `${addonName} is already on your cookie. You cannot add it twice`);
+        }
 
         addons.push(addonName);
 
@@ -42,19 +44,16 @@ configuratorRouter
     })
     .get('/delete-addon/:addonName', (req, res) => {
         const {addonName} = req.params;
-        const {cookieAddons} = req.cookies;
 
+        const oldAddons = getAddonsFromReq(req);
 
-
-
-        const addons = getAddonsFromReq(req)
-
-        if (addons.includes(addonName)) {
-            return res.render('error', {
-                description: `${addonName} is already on your cookie. You cannot add it twice`,
-            })
+        if (!oldAddons.includes(addonName)) {
+            return showErrorPage(res, `Cannot delete something that isn't already added to the cookie.${addonName} not found on cookie`);
         }
-        addons.push(addonName)
+
+        const addons = oldAddons.filter(addon => addon !== addonName);
+
+
         res
             .cookie('cookieAddons', JSON.stringify(addons))
             .render('configurator/deleted', {

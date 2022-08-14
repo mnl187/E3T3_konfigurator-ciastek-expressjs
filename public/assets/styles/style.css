@@ -8,7 +8,11 @@
     padding: 5px;
     background-color: #ffcdcd;
 }
-
+.success {
+    border: 1px solid #92ee92;
+    padding: 5px;
+    background-color: #ffcdcd;
+}
 .btn {
     background-color: #b0a797;
     color: black;

@@ -27,7 +27,7 @@ orderRouter
         });
     })
     .get('/thanks', (req, res) => {
-      const {} = getCookieSettings()
+      const {sum} = getCookieSettings(req);
         res
             .clearCookie('cookieBase')
             .clearCookie('cookieAddons')

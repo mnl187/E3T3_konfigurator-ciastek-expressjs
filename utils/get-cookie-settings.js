@@ -1,10 +1,9 @@
-import {getAddonsFromReq} from "./get-adddns-from-req";
-import {handlebarsHelpers} from "./handlebars-helpers";
-import {COOKIE_ADDONS, COOKIE_BASES} from "../data/cookies-data";
+const {handlebarsHelpers} = require("./handlebars-helpers");
+const {COOKIE_ADDONS, COOKIE_BASES} = require("../data/cookies-data");
+const {getAddonsFromReq} = require("./get-adddns-from-req");
 
-export function getCookieSettings(req) {
-
-    const {cookieBase, cookieAddons} = req.cookies;
+function getCookieSettings(req) {
+    const {cookieBase} = req.cookies;
 
     const addons = getAddonsFromReq(req);
 

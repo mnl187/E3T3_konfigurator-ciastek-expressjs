@@ -6,9 +6,10 @@
 <h2>Select your favorite addons</h2>
 
 {{# each addons}}
-    {{#if (isNotInArray @root.cookie.addons this.[0])}}
-    <a href="/configurator/add-addon/{{this.[0]}}" class="btn">Add {{this.[0]}} for {{this.[1]}} PLN.</a>
-    {{/if}}
+    <a href="/configurator/add-addon/{{this.[0]}}"
+       class="btn {{#if (isInArray @root.cookie.addons this.[0])}}btn-disabled{{/if}}">
+        Add {{this.[0]}} for {{this.[1]}} PLN.</a>
+
 {{/each}}
 
 {{#if cookie.base}}

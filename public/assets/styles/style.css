@@ -18,9 +18,18 @@
     font-weight: bold;
     margin: 3px;
     border-radius: 3px;
+    display: inline-block;
+    cursor: pointer;
 }
-
+.btn-disabled {
+    background-color: #585858;
+    color: gray;
+    cursor: not-allowed;
+    pointer-events: none;
+}
 .btn-small {
     padding: 0 5px;
     margin: 0;
 }
+
+

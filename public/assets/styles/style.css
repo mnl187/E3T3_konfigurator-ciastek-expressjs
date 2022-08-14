@@ -32,4 +32,12 @@
     margin: 0;
 }
 
+.btn-big {
+    font-size: 110%;
+    padding: 10px 20px;
+}
 
+.cart-img {
+    width: 32px;
+    vertical-align: middle;
+}

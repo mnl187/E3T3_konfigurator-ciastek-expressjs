@@ -12,12 +12,12 @@ orderRouter
 
         const addons = getAddonsFromReq(req);
 
-        const sum = (cookieBase ? handlebarsHelpers.findPrice(Object.entries(COOKIE_BASES),cookieBase) : 0) + addons.reduce((prev, curr) => (
+        const sum = (cookieBase ? handlebarsHelpers.findPrice(Object.entries(COOKIE_BASES), cookieBase) : 0) + addons.reduce((prev, curr) => (
             prev + handlebarsHelpers.findPrice(Object.entries(COOKIE_ADDONS), curr)
         ), 0);
         res.render('order/summary', {
-            cookier: {
-                base: cookierBase,
+            cookie: {
+                base: cookieBase,
                 addons,
             },
             bases: Object.entries(COOKIE_BASES),
@@ -25,6 +25,21 @@ orderRouter
             sum,
         });
     })
+    .get('/thanks', (req, res) => {
+      const {cookieBase, cookieAddons} = req.cookies;
+
+        const addons = getAddonsFromReq(req);
+
+        const sum = (cookieBase ? handlebarsHelpers.findPrice(Object.entries(COOKIE_BASES), cookieBase) : 0) + addons.reduce((prev, curr) => (
+            prev + handlebarsHelpers.findPrice(Object.entries(COOKIE_ADDONS), curr)
+        ), 0);
+        res
+            .clearCookie('cookieBase')
+            .clearCookie('cookieAddons')
+            .render('order/thanks',{
+            sum,
+        })
+    });
 module.exports = {
     orderRouter,
 };

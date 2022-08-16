@@ -1,5 +1,5 @@
 function getAddonsFromReq(req) {
-const {cookieBase, cookieAddons} = req.cookies;
+const {cookieAddons} = req.cookies;
 return cookieAddons ? JSON.parse(cookieAddons) : [];
 }
 

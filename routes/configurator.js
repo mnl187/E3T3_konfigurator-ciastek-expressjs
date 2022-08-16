@@ -1,7 +1,7 @@
 const express = require('express');
 const {getAddonsFromReq} = require("../utils/get-adddns-from-req");
 const {COOKIE_BASES, COOKIE_ADDONS} = require("../data/cookies-data");
-const {response} = require("express");
+const {showErrorPage} = require("../utils/show-error-page");
 
 const configuratorRouter = express.Router();
 
@@ -9,10 +9,9 @@ configuratorRouter
     .get('/select-base/:baseName', (req, res) => {
         const {baseName} = req.params;
 
-        if (!COOKIE_BASES[baseName])
-            return res.render('error', {
-                description: `There is no such addon as ${baseName}.`,
-            });
+        if (!COOKIE_BASES[baseName]) {
+            return showErrorPage(res, `There is no such base as ${baseName}`);
+        }
 
         res
             .cookie('cookieBase', baseName)
@@ -23,12 +22,12 @@ configuratorRouter
 
     .get('/add-addon/:addonName', (req, res) => {
         const {addonName} = req.params;
-        const {cookieAddons} = req.cookies;
 
-        const addons = getAddonsFromReq(req);
 
         if (!COOKIE_ADDONS[addonName])
             return showErrorPage(`There is no such addon as ${addonName}.`);
+
+        const addons = getAddonsFromReq(req);
 
         if (addons.includes(addonName)) {
             return showErrorPage(res, `${addonName} is already on your cookie. You cannot add it twice`);

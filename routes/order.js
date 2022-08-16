@@ -27,13 +27,13 @@ orderRouter
         });
     })
     .get('/thanks', (req, res) => {
-      const {sum} = getCookieSettings(req);
+        const {sum} = getCookieSettings(req);
         res
             .clearCookie('cookieBase')
             .clearCookie('cookieAddons')
-            .render('order/thanks',{
-            sum,
-        })
+            .render('order/thanks', {
+                sum,
+            })
     });
 module.exports = {
     orderRouter,

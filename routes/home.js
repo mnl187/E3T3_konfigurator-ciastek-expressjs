@@ -16,7 +16,7 @@ homeRouter
             allBases,
             allAddons,
             sum,
-        })
+        });
     });
 
 module.exports = {

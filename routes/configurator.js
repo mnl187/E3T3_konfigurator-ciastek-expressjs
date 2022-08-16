@@ -24,8 +24,9 @@ configuratorRouter
         const {addonName} = req.params;
 
 
-        if (!COOKIE_ADDONS[addonName])
+        if (!COOKIE_ADDONS[addonName]) {
             return showErrorPage(`There is no such addon as ${addonName}.`);
+        }
 
         const addons = getAddonsFromReq(req);
 
@@ -47,7 +48,7 @@ configuratorRouter
         const oldAddons = getAddonsFromReq(req);
 
         if (!oldAddons.includes(addonName)) {
-            return showErrorPage(res, `Cannot delete something that isn't already added to the cookie.${addonName} not found on cookie`);
+            return showErrorPage(res, `Cannot delete something that isn't already added to the cookie. ${addonName} not found on cookie`);
         }
 
         const addons = oldAddons.filter(addon => addon !== addonName);

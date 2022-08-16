@@ -23,16 +23,8 @@ orderRouter
         const {sum} = getCookieSettings(req);
 
         res
-            .clearCookie('cookieBase', {
-                // Ze względu na używanie ramki (Repl)
-                sameSite: 'none',
-                secure: true,
-            })
-            .clearCookie('cookieAddons', {
-                // Ze względu na używanie ramki (Repl)
-                sameSite: 'none',
-                secure: true,
-            })
+            .clearCookie('cookieBase')
+            .clearCookie('cookieAddons')
             .render('order/thanks', {
                 sum,
             });

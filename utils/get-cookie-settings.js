@@ -1,5 +1,5 @@
-const {getAddonsFromReq} = require("./get-adddns-from-req");
-const {COOKIE_ADDONS, COOKIE_BASES} = require("../data/cookies-data");
+const {getAddonsFromReq} = require("./get-addons-from-req");
+const {COOKIE_BASES, COOKIE_ADDONS} = require("../data/cookies-data");
 const {handlebarsHelpers} = require("./handlebars-helpers");
 
 function getCookieSettings(req) {

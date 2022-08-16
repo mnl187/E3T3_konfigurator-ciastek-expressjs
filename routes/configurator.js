@@ -1,5 +1,5 @@
 const express = require('express');
-const {getAddonsFromReq} = require("../utils/get-adddns-from-req");
+const {getAddonsFromReq} = require("../utils/get-addons-from-req");
 const {COOKIE_BASES, COOKIE_ADDONS} = require("../data/cookies-data");
 const {showErrorPage} = require("../utils/show-error-page");
 

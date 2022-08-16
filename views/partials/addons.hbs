@@ -5,8 +5,9 @@
     {{#each cookie.addons}}
         <li>
             {{#unless ../noDeleteBtn}}
-            <a class="btn btn-small" href="/configurator/delete-addon/{{this}}">Delete</a>Addon: {{this}} - {{pricify (findPrice  @root.aadons this)}} PLN. </li>
-            {{/unless}}
+            <a class="btn btn-small" href="/configurator/delete-addon/{{this}}">Delete{{/unless}}
+            </a>Addon: {{this}} - {{pricify (findPrice @root.allAddons this)}} PLN. </li>
+
             {{/each}}
 </ul>
 <p>

@@ -1,8 +1,8 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const hbs = require('express-handlebars');
-const {configuratorRouter} = require("./routes/configurator");
 const {homeRouter} = require("./routes/home");
+const {configuratorRouter} = require("./routes/configurator");
 const {orderRouter} = require("./routes/order");
 const {handlebarsHelpers} = require("./utils/handlebars-helpers");
 
@@ -19,7 +19,9 @@ app.set('view engine', '.hbs');
 
 app.use('/', homeRouter);
 app.use('/configurator', configuratorRouter);
-app.use('/order', orderRouter)
+app.use('/order', orderRouter);
 
 
-app.listen(3000, 'localhost');
+app.listen(3000, 'localhost', () => {
+    console.log('listening on http://localhost:3000');
+});
